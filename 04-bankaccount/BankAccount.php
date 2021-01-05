@@ -13,8 +13,20 @@ class BankAccount {
         $this->overdraft = $overdraft;
     }
 
+    public function getIdentifier() {
+        return $this->identifier;
+    }
+
+    public function getOwner() {
+        return $this->owner;
+    }
+
     public function getBalance() {
         return $this->balance;
+    }
+
+    public function getOverdraft() {
+        return $this->overdraft;
     }
 
     public function depositMoney($amount) {
