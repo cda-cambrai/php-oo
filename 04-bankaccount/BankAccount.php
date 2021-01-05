@@ -29,6 +29,28 @@ class BankAccount {
         return $this->overdraft;
     }
 
+    /**
+     * Permet de vérifier si des erreurs sont présentes
+     * dans les valeurs des attributs
+     */
+    public function getErrors() {
+        $errors = [];
+
+        if (empty($this->owner)) {
+            $errors['owner'] = 'Le nom est vide';
+        }
+
+        if (!is_numeric($this->balance) || $this->balance < 0) {
+            $errors['balance'] = 'Montant non valide';
+        }
+
+        if (!is_numeric($this->overdraft) || $this->overdraft < 0) {
+            $errors['overdraft'] = 'Montant non valide';
+        }
+
+        return $errors;
+    }
+
     public function depositMoney($amount) {
         // Si on veut déposer un montant négatif (retrait)
         // if ($this->balance - $amount < 0) {
