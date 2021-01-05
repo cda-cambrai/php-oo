@@ -53,7 +53,7 @@ echo Chat::howMany();
 
 class Animal {
     protected $name;
-    private $type;
+    protected $type;
 
     public function __construct($name) {
         $this->name = $name;
@@ -88,3 +88,30 @@ echo $bianca->climbsOnRoof();
 // Avec l'héritage, on a ce qu'on appelle le polymorphisme
 var_dump($bianca instanceof Animal);
 var_dump($bianca instanceof Cat);
+echo '<br /><br />';
+
+/**
+ * On va essayer de créer une classe Dog qui hérite de la classe Animal
+ * Le chien se déplace bruyamment...
+ * Le chien peut faire une balade avec son maître
+ * Le chien a son propre constructeur pour pouvoir lui assigner un type
+ */
+class Dog extends Animal {
+    public function __construct($name, $type) {
+        parent::__construct($name); // J'appelle d'abord le constructeur de Animal
+        $this->type = $type;
+    }
+
+    public function move() {
+        return parent::move(). ' bruyamment... <br />';
+    }
+
+    public function takeAWalk() {
+        return $this->name . ' sort avec son maître. <br />';
+    }
+}
+
+$dog = new Dog('Pongo', 'Dalmatien');
+echo $dog->move();
+echo $dog->takeAWalk();
+var_dump($dog);
