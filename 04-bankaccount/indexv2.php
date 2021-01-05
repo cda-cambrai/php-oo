@@ -64,10 +64,27 @@
                     <label for="overdraft">Découvert autorisé</label>
                     <input type="number" name="overdraft" id="overdraft" class="form-control" value="<?= $overdraft; ?>"> <br />
 
-                    <button class="btn btn-primary btn-block">Ajouter le compte</button>
+                    <button class="btn btn-primary btn-block mb-4">Ajouter le compte</button>
                 </form>
             </div>
         </div>
+
+        <?php
+            // On veut récupèrer la liste des comptes sur la BDD
+            $bankAccounts = $manager->getList();
+
+            foreach ($bankAccounts as $bankAccount) { ?>
+
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title"><?= $bankAccount->getOwner(); ?></h5>
+                        <p>Montant du compte: <?= $bankAccount->getBalance(); ?></p>
+                        <p>Découvert autorisé: <?= $bankAccount->getOverdraft(); ?></p>
+                    </div>
+                </div>
+
+            <?php }
+        ?>
     </div>
 </body>
 </html>

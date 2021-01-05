@@ -28,4 +28,23 @@ class BankManager {
         // On exécute la requête et on retourne le résultat (true)
         return $query->execute();
     }
+
+    /**
+     * Cette méthode permet de récupérer la liste des comptes
+     */
+    public function getList() {
+        $query = $this->db->query('SELECT * FROM bankaccount');
+
+        // On va parcourir chaque données de la base pour créer
+        // des instances de BankAccount
+        $bankAccounts = [];
+        foreach ($query->fetchAll() as $bankAccount) {
+            // On ajoute des instances dans le tableau
+            $bankAccounts[] = new BankAccount(
+                $bankAccount['identifier'], $bankAccount['owner'], $bankAccount['balance'], $bankAccount['overdraft']
+            );
+        }
+
+        return $bankAccounts;
+    }
 }
