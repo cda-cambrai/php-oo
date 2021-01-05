@@ -12,10 +12,7 @@
         <h1>Gestion de compte bancaire en POO (Avec la base de données)</h1>
 
         <?php
-
-use function PHPSTORM_META\map;
-
-require_once 'BankAccount.php';
+            require_once 'BankAccount.php';
             require_once 'BankManager.php';
             // La classe BankManager me permet de me connecter à la BDD et de gérer des comptes
             $manager = new BankManager('localhost', 'root', '', 'poo-bank-account');
