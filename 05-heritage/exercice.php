@@ -28,23 +28,32 @@ BONUS:
 Un véhicule ne peut accélérer que s'il a déjà démarré.
 */
 
+require_once 'Vehicle.php';
+require_once 'Car.php';
+require_once 'Moto.php';
+require_once 'Camion.php';
+
 $car1 = new Car('BMW', 10000);
-$car1->start();
-$car1->accelerate();
+echo $car1->start();
+echo $car1->accelerate();
 
 $moto1 = new Moto('Yamaha', 5000);
-$moto1->start();
-$moto1->accelerate();
+echo $moto1->start();
+echo $moto1->accelerate();
 
-$camion1 = new Camion('Mercedes', 50000, 3);
+$camion1 = new Camion('Mercedes', 50000, 3, 12); // Capacité de 3 et 12 roues
 $camion1->addItem('PC')->addItem('iPhone')->addItem('TV');
 
 $camion1->addItem('Tomate'); // Le camion est plein
+var_dump($car1);
+var_dump($moto1);
+var_dump($camion1);
 $camion1->attachTrailer(); // On double la capacité du camion (6)
 $camion1->addItem('Tomate')->addItem('Salade')->addItem('Frites');
+var_dump($camion1->getItems()); // Tableau avec PC, iPhone, TV, Tomate, Salade, Frites
 
 $camion1->start();
 $camion1->accelerate();
 
 $camion1->detachTrailer();
-$camion1->getItems(); // Tableau avec PC, iPhone, TV
+var_dump($camion1->getItems()); // Tableau avec PC, iPhone, TV
