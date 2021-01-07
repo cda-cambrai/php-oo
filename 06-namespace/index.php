@@ -19,6 +19,12 @@ spl_autoload_register(function ($class) {
     // Le code de la fonction est exécuté à chaque fois
     // qu'on utilise une classe
     //var_dump($class.'.php');
+    // $class vaut Earth\Nature\Animal
+    // DIRECTORY_SEPARATOR vaut / sur Mac
+    //                     vaut \ sous Windows
+    // Ce code permet de régler les soucis sur Mac et Linux
+    $class = str_replace('\\', DIRECTORY_SEPARATOR, $class);
+
     require_once $class.'.php';
 });
 

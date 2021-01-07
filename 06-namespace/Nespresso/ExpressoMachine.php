@@ -9,6 +9,7 @@ class ExpressoMachine {
     private $water = 0;
     private $pods = 0;
     private $litresConsumed = 0;
+    private $money = 0;
 
     public function __construct($litresByExpresso, $litresByDescale, $descale) {
         $this->litresByExpresso = $litresByExpresso;
@@ -43,6 +44,7 @@ class ExpressoMachine {
         $this->water -= $consumed; // Je retire 0.05 d'eau
         $this->pods -= $quantity; // Je retire $quantity dosette
         $this->litresConsumed += $consumed; // Référence pour le détartrage
+        $this->money += 0.50 * $quantity; // On ajoute l'argent du(es) café(s) dans la machine
 
         return 'Voici vos '.$consumed.'L de café <br />';
     }
@@ -65,5 +67,24 @@ class ExpressoMachine {
         }
 
         return $status;
+    }
+
+    public function descale() {
+        // Vérification si on doit détartrer et qu'il y a assez d'eau pour détartrer
+        if ($this->litresConsumed >= $this->descale && $this->water >= $this->litresByDescale) {
+            $this->water -= $this->litresByDescale; // On prend 1L pour le détartrage
+            $this->litresConsumed = 0; // On remets à 0 pour connaitre le prochain détartrage
+
+            return 'Détartrage <br />';
+        } else { // Si le détartrage n'est pas nécessaire ou qu'il manque de l'eau pour le faire
+            return 'Pas de détartrage ou il manque de l\'eau';
+        }
+    }
+
+    public function getMoney() {
+        $money = $this->money;
+        $this->money = 0; // La réserve de pièces de la machine est vide
+
+        return $money.' € pour '.($money/0.5).' cafés <br />';
     }
 }
