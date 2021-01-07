@@ -15,7 +15,12 @@
  * index.php se situe.
  * La fonction ne charge la classe que si elle est utilisée par le code.
  */
-spl_autoload_register();
+spl_autoload_register(function ($class) {
+    // Le code de la fonction est exécuté à chaque fois
+    // qu'on utilise une classe
+    //var_dump($class.'.php');
+    require_once $class.'.php';
+});
 
 //require_once 'Earth/Nature/Animal.php';
 //require_once 'Mars/Nature/Animal.php';
