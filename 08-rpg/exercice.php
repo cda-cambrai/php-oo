@@ -34,17 +34,6 @@ $sword = new Item('Andùril');
 $aragorn->pick($potion)
         ->pick($sword);
 
-
-
-
-
-
-
-
-
-
-
-
 /**
  * On doit pouvoir créer des objets avec certaines particularités.
  * Une potion est utilisable pour ajouter des points de vie au personnage.

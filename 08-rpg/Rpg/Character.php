@@ -12,6 +12,22 @@ class Character {
         $this->name = $name;
     }
 
+    public function getName() {
+        return $this->name;
+    }
+
+    public function getHealth() {
+        return $this->health;
+    }
+
+    public function getStrength() {
+        return $this->strength;
+    }
+
+    public function getMana() {
+        return $this->mana;
+    }
+
     public function attack($character) {
         // $character est le personnage attaqué et $this est l'attaquant
         $character->health -= $this->strength * 2;

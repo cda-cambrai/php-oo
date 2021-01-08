@@ -7,4 +7,8 @@ class Warrior extends Character {
         parent::__construct($name);
         $this->strength *= 2;
     }
+
+    public function getImage() {
+        return 'images/aragorn.jpg';
+    }
 }

@@ -22,8 +22,31 @@
         echo $aragorn->attack($legolas); // Enlève X points de vie en fonction de la force (Force x 2)
         echo $legolas->rangedAttack($gandalf); // Enlève X points de vie si le personnage est chasseur (Force x 3)
         echo $gandalf->castSpell($aragorn); // Enlève X points de vie en fonction du mana (Mana x 3)
+
+        // Tableau avec les personnages
+        $characters = [$aragorn, $legolas, $gandalf];
     ?>
 
+    <div class="container">
+        <div class="row">
+            <?php foreach ($characters as $character) { ?>
+                <div class="col-lg-4">
+                    <h1><?= $character->getName(); ?></h1>
+                    <img src="<?= $character->getImage(); ?>">
+
+                    <span class="rounded-circle bg-danger text-white p-3">
+                        <?= $character->getHealth(); ?>
+                    </span>
+                    <span class="rounded-circle bg-dark text-white p-3 mx-2">
+                        <?= $character->getStrength(); ?>
+                    </span>
+                    <span class="rounded-circle bg-primary text-white p-3">
+                        <?= $character->getMana(); ?>
+                    </span>
+                </div>
+            <?php } ?>
+        </div>
+    </div>
 
 </body>
 </html>

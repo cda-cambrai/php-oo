@@ -8,6 +8,10 @@ class Magus extends Character {
         $this->mana *= 2;
     }
 
+    public function getImage() {
+        return 'images/gandalf.jpg';
+    }
+
     public function castSpell($character) {
         $character->health -= $this->mana * 3;
 
