@@ -13,6 +13,7 @@
 
         use Rpg\Hunter;
         use Rpg\Inventory\Item;
+        use Rpg\Inventory\Potion;
         use Rpg\Magus;
         use Rpg\Warrior;
 
@@ -28,9 +29,12 @@
         $potion = new Item('Potion');
         $sword = new Item('Andùril');
         $arc = new Item('Arc');
+        $potion = new Potion();
 
         $aragorn->pick($potion)->pick($sword);
         $legolas->pick($arc);
+
+        $aragorn->consume($potion);
 
         // Tableau avec les personnages
         $characters = [$aragorn, $legolas, $gandalf];
@@ -43,13 +47,13 @@
                     <h1><?= $character->getName(); ?></h1>
                     <img src="<?= $character->getImage(); ?>">
 
-                    <span class="rounded-circle bg-danger text-white p-3">
+                    <span class="health bg-danger text-white p-3">
                         <?= $character->getHealth(); ?>
                     </span>
-                    <span class="rounded-circle bg-dark text-white p-3 mx-2">
+                    <span class="mana bg-dark text-white p-3 mx-2">
                         <?= $character->getStrength(); ?>
                     </span>
-                    <span class="rounded-circle bg-primary text-white p-3">
+                    <span class="strength bg-primary text-white p-3">
                         <?= $character->getMana(); ?>
                     </span>
 
@@ -59,6 +63,40 @@
             <?php } ?>
         </div>
     </div>
+
+    <style>
+        body{
+            background-image: url(https://www.dailymars.net/wp-content/uploads/2014/12/terre-du-milieu.jpg);
+            color: white;
+        }
+        .health, .mana, .strength{
+            position: absolute;
+            height: 50px;
+            width: 50px;
+            border:3px solid black;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .health{
+            top: 373px;
+            left: 40px;
+        }
+
+        .mana{
+            top: 426px;
+            left: 30px;
+        }
+
+        .strength{
+            top: 480px;
+            left: 36px;
+        }
+    </style>
 
 </body>
 </html>

@@ -51,6 +51,14 @@ class Character {
         return $html;
     }
 
+    public function addHealth($health) {
+        $this->health += $health;
+    }
+
+    public function consume($item) {
+        $item->use($this);
+    }
+
     public function attack($character) {
         // $character est le personnage attaqué et $this est l'attaquant
         $character->health -= $this->strength * 2;

@@ -42,7 +42,8 @@ $aragorn->pick($potion)
  */
 
 $potion = new Potion();
-$sword = new Sword('Excalibur', 5);
+// Ajoute 5 points de force à celui qui équipe Andùril
+$sword = new Sword('Andùril', 5);
 
 $aragorn->pick($potion)
         ->pick($sword);
