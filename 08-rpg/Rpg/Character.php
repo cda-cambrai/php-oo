@@ -7,6 +7,7 @@ class Character {
     protected $health = 100;
     protected $strength = 10;
     protected $mana = 10;
+    protected $inventory = [];
 
     public function __construct($name) {
         $this->name = $name;
@@ -26,6 +27,28 @@ class Character {
 
     public function getMana() {
         return $this->mana;
+    }
+
+    /**
+     * Le personnage peut ramasser un Item et le mettre dans son inventaire
+     */
+    public function pick($item) {
+        $this->inventory[] = $item;
+
+        return $this;
+    }
+
+    /**
+     * Afficher l'inventaire du personnage
+     */
+    public function getInventory() {
+        $html = '<ul>';
+        foreach ($this->inventory as $item) {
+            // .= permet de concaténer à la suite
+            $html .= '<li>'.$item->getName().'</li>';
+        }
+        $html .= '</ul>';
+        return $html;
     }
 
     public function attack($character) {

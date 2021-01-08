@@ -12,6 +12,7 @@
         spl_autoload_register();
 
         use Rpg\Hunter;
+        use Rpg\Inventory\Item;
         use Rpg\Magus;
         use Rpg\Warrior;
 
@@ -22,6 +23,14 @@
         echo $aragorn->attack($legolas); // Enlève X points de vie en fonction de la force (Force x 2)
         echo $legolas->rangedAttack($gandalf); // Enlève X points de vie si le personnage est chasseur (Force x 3)
         echo $gandalf->castSpell($aragorn); // Enlève X points de vie en fonction du mana (Mana x 3)
+
+        // Les personnages peuvent ramasser des objets
+        $potion = new Item('Potion');
+        $sword = new Item('Andùril');
+        $arc = new Item('Arc');
+
+        $aragorn->pick($potion)->pick($sword);
+        $legolas->pick($arc);
 
         // Tableau avec les personnages
         $characters = [$aragorn, $legolas, $gandalf];
@@ -43,6 +52,9 @@
                     <span class="rounded-circle bg-primary text-white p-3">
                         <?= $character->getMana(); ?>
                     </span>
+
+                    <!-- Afficher l'inventaire sous forme de liste -->
+                    <?= $character->getInventory(); ?>
                 </div>
             <?php } ?>
         </div>
