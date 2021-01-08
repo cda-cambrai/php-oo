@@ -4,7 +4,7 @@ namespace Rpg;
 
 class Character {
     private $name;
-    private $health = 100;
+    protected $health = 100;
     protected $strength = 10;
     protected $mana = 10;
 
