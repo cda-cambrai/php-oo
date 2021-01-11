@@ -1,0 +1,13 @@
+{
+    "name": "administrateur/10-mvc",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Matthieu Mota",
+            "email": "matthieumota@gmail.com"
+        }
+    ],
+    "require": {
+        "symfony/var-dumper": "^5.2"
+    }
+}
