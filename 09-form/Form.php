@@ -31,6 +31,39 @@ class Form {
         ";
     }
 
+    public function select($name, $values) {
+        $this->fields[] = $name;
+        // On génère le label au format Email pour le name email
+        $label = ucfirst($name);
+        // On récupère la valeur avec getData
+        $selected = $this->getData($name);
+        // On génère les options du select
+        $options = '';
+        foreach ($values as $value) {
+            $options .= "<option value=\"$value\">$value</option>";
+        }
+
+        return "
+            <label for=\"$name\">$label</label>
+            <select name=\"$name\" id=\"$name\" class=\"form-control\">
+                $options
+            </select>
+        ";
+    }
+
+    public function textarea($name) {
+        $this->fields[] = $name;
+        // On génère le label au format Email pour le name email
+        $label = ucfirst($name);
+        // On récupère la valeur avec getData
+        $value = $this->getData($name);
+
+        return "
+            <label for=\"$name\">$label</label>
+            <textarea name=\"$name\" id=\"$name\" class=\"form-control\">$value</textarea>
+        ";
+    }
+
     public function button($name) {
         return "<button class=\"btn btn-primary\">$name</button>";
     }

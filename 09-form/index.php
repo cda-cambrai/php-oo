@@ -18,12 +18,22 @@
         // Ensuite je vais configurer mon formulaire grâce à $form
 
         // Pour les erreurs, on va créer une nouvelle classe
+        $validation = new Validation($form);
+        $validation->name('civility')->min(2)->required();
+        $validation->name('email')->required();
+        $validation->name('telephone')->required();
+        $validation->name('message')->min(15)->required();
     ?>
 
     <form method="post" action="">
-        <?= $form->input('email'); ?>
+        <?= $form->select('civility', ['Mr', 'Mme']); ?>
+        <?= $validation->getError('civility'); ?>
+        <?= $form->input('email', 'email'); ?>
+        <?= $validation->getError('email'); ?>
         <?= $form->input('telephone', 'number'); ?>
-        <?= $form->input('message'); ?>
+        <?= $validation->getError('telephone'); ?>
+        <?= $form->textarea('message'); ?>
+        <?= $validation->getError('message'); ?>
 
         <?= $form->button('Envoyer'); ?>
     </form>
@@ -33,6 +43,7 @@
         if ($form->isSubmit()) {
             // Le getData doit me renvoyer toutes les données du formulaire ($_POST)
             var_dump($form->getData());
+            var_dump($validation->getErrors());
         }
     ?>
 
