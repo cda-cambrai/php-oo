@@ -58,7 +58,6 @@
         $pikachu = new Warrior('Pikachu');
         $aragorn->attack($pikachu);
         $aragorn->attack($pikachu); // 1 points d'xp
-        var_dump($pikachu);
 
         // Aragorn doit avoir 2 d'exp
     ?>
