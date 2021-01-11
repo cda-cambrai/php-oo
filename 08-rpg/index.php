@@ -14,6 +14,7 @@
         use Rpg\Hunter;
         use Rpg\Inventory\Item;
         use Rpg\Inventory\Potion;
+        use Rpg\Inventory\Sword;
         use Rpg\Magus;
         use Rpg\Warrior;
 
@@ -30,11 +31,15 @@
         $sword = new Item('Andùril');
         $arc = new Item('Arc');
         $potion = new Potion();
+        $sword = new Sword('Andùril', 5);
 
         $aragorn->pick($potion)->pick($sword);
         $legolas->pick($arc);
 
         $aragorn->consume($potion);
+        $aragorn->equip($sword);
+        // Ne fais rien car $legolas est un Chasseur
+        $legolas->equip($sword);
 
         // Tableau avec les personnages
         $characters = [$aragorn, $legolas, $gandalf];
@@ -50,10 +55,10 @@
                     <span class="health bg-danger text-white p-3">
                         <?= $character->getHealth(); ?>
                     </span>
-                    <span class="mana bg-dark text-white p-3 mx-2">
+                    <span class="strength bg-dark text-white p-3 mx-2">
                         <?= $character->getStrength(); ?>
                     </span>
-                    <span class="strength bg-primary text-white p-3">
+                    <span class="mana bg-primary text-white p-3">
                         <?= $character->getMana(); ?>
                     </span>
 

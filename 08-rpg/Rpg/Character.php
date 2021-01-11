@@ -2,6 +2,9 @@
 
 namespace Rpg;
 
+use Rpg\Inventory\EquipableInterface;
+use Rpg\Inventory\UsableInterface;
+
 class Character {
     private $name;
     protected $health = 100;
@@ -55,8 +58,19 @@ class Character {
         $this->health += $health;
     }
 
-    public function consume($item) {
+    public function addStrength($strength) {
+        $this->strength += $strength;
+    }
+
+    public function consume(UsableInterface $item) {
         $item->use($this);
+    }
+
+    public function equip(EquipableInterface $item) {
+        // Je vérifie si l'item équipable est compatible avec le personnage
+        if ($item->supports($this)) {
+            $item->use($this);
+        }
     }
 
     public function attack($character) {

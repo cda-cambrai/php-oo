@@ -4,7 +4,7 @@ namespace Rpg\Inventory;
 
 use Rpg\Character;
 
-class Potion extends Item {
+class Potion extends Item implements UsableInterface {
     public function __construct() {
         parent::__construct('Potion');
     }

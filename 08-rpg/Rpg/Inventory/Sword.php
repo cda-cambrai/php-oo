@@ -3,8 +3,9 @@
 namespace Rpg\Inventory;
 
 use Rpg\Character;
+use Rpg\Warrior;
 
-class Sword extends Item {
+class Sword extends Item implements EquipableInterface {
     private $strength;
 
     public function __construct($name, $strength) {
@@ -18,5 +19,13 @@ class Sword extends Item {
      */
     public function use(Character $character) {
         $character->addStrength($this->strength);
+    }
+
+    /**
+     * Renvoie true seulement si le personnage est un guerrier
+     * Permet de dire que l'épée n'est que pour le guerrier
+     */
+    public function supports(Character $character) {
+        return $character instanceof Warrior;
     }
 }
