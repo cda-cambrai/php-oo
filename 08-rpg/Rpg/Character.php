@@ -11,6 +11,9 @@ class Character {
     protected $strength = 10;
     protected $mana = 10;
     protected $inventory = [];
+    private $level = 1;
+    private $experience = 0;
+    private $killed = false;
 
     public function __construct($name) {
         $this->name = $name;
@@ -30,6 +33,14 @@ class Character {
 
     public function getMana() {
         return $this->mana;
+    }
+
+    public function getLevel() {
+        return $this->level;
+    }
+
+    public function getExp() {
+        return $this->experience;
     }
 
     /**
@@ -83,6 +94,19 @@ class Character {
     protected function displayAttackInfo($character) {
         if ($character->health <= 0) {
             $character->health = 0; // Evite d'avoir un nombre négatif
+
+            // Ici, on augmente l'xp du personnage attaquant
+            // si la cible n'a pas encore été tuée
+            if (!$character->killed) {
+                $this->experience++;
+                if ($this->experience % 3 === 0) {
+                    // Dès qu'on atteint 3, 6, 9 points d'xp
+                    // On passe au niveau suivant
+                    $this->level++;
+                }
+                $character->killed = true;
+            }
+
             return $character->name.' est mort. <br />';
         }
 

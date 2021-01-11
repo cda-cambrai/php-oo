@@ -43,12 +43,30 @@
 
         // Tableau avec les personnages
         $characters = [$aragorn, $legolas, $gandalf];
+
+        // Gain d'expérience
+        $aragorn->attack($legolas);
+        $aragorn->attack($legolas); // 1 points d'xp
+        $aragorn->attack($legolas); // 0 points d'xp
+        $aragorn->attack($legolas); // 0 points d'xp
+        $aragorn->attack($legolas); // 0 points d'xp
+        $aragorn->attack($legolas); // 0 points d'xp
+
+        $aragorn->attack($gandalf);
+        $aragorn->attack($gandalf); // 1 points d'xp
+
+        $pikachu = new Warrior('Pikachu');
+        $aragorn->attack($pikachu);
+        $aragorn->attack($pikachu); // 1 points d'xp
+        var_dump($pikachu);
+
+        // Aragorn doit avoir 2 d'exp
     ?>
 
     <div class="container">
         <div class="row">
             <?php foreach ($characters as $character) { ?>
-                <div class="col-lg-4">
+                <div class="col-lg-4 bg-dark">
                     <h1><?= $character->getName(); ?></h1>
                     <img src="<?= $character->getImage(); ?>">
 
@@ -64,6 +82,10 @@
 
                     <!-- Afficher l'inventaire sous forme de liste -->
                     <?= $character->getInventory(); ?>
+
+                    <!-- Affiche le level et l'xp -->
+                    <span>Level: <?= $character->getLevel(); ?></span>
+                    <span>Exp: <?= $character->getExp(); ?></span>
                 </div>
             <?php } ?>
         </div>
