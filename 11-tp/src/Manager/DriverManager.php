@@ -45,4 +45,33 @@ class DriverManager
 
         return $query->execute();
     }
+
+    /**
+     * Permet de récupérer un chauffeur dans la BDD
+     */
+    public function getDriverById($id) {
+        $query = $this->db->prepare('SELECT * FROM driver WHERE id = :id');
+        $query->bindValue(':id', $id);
+        $query->execute();
+
+        // On hydrate bien un objet Driver avec les données de la requête
+        $fetch = $query->fetch();
+        $driver = new Driver($fetch['name'], $fetch['firstname']);
+        $driver->setId($fetch['id']);
+
+        return $driver;
+    }
+
+    public function update(Driver $driver) {
+        $query = $this->db->prepare(
+            'UPDATE driver
+             SET name = :name, firstname = :firstname
+             WHERE id = :id'
+        );
+        $query->bindValue(':name', $driver->getName());
+        $query->bindValue(':firstname', $driver->getFirstname());
+        $query->bindValue(':id', $driver->getId());
+
+        return $query->execute();
+    }
 }

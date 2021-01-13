@@ -4,7 +4,7 @@ require '../templates/header.html.php'; ?>
 
     <div class="container">
         <h1>Liste des conducteurs</h1>
-        <table class="table">
+        <table class="table text-center">
             <thead>
                 <tr>
                     <th>ID</th>

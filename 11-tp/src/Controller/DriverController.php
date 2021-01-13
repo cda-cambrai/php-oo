@@ -36,7 +36,31 @@ class DriverController
     }
 
     public function edit() {
-        echo 'EDIT';
+        // On doit récupérer le chauffeur qui est modifié dans la bdd
+        $manager = new DriverManager();
+        $driver = $manager->getDriverById($_GET['id']);
+        // On crée le formulaire pour pouvoir l'afficher sur cette page
+        $data = ['name' => $driver->getName(), 'firstname' => $driver->getFirstname()];
+        $form = new \Form($data);
+        // Si le formulaire est soumis, on prend les données du formulaire
+        if ($form->isSubmit()) {
+            $form = new \Form($_POST);
+        }
+        $validation = new \Validation($form);
+        $validation->name('firstname')->min(3)->required();
+        $validation->name('name')->required();
+
+        // On met à jour dans la BDD
+        if ($form->isSubmit() && empty($validation->getErrors())) {
+            // Attention, on change les données du Driver avec celle
+            // du formulaire
+            $driver->setName($form->getData('name'));
+            $driver->setFirstname($form->getData('firstname'));
+            $manager->update($driver);
+            header('Location: index.php?controller=driver&action=list');
+        }
+
+        include '../templates/driver/edit.html.php';
     }
 
     public function delete() {
