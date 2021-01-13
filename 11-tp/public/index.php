@@ -10,6 +10,16 @@ spl_autoload_register(function ($class) {
     require_once '../src/'.$class.'.php';
 });
 
+// On va récupèrer la page qui est appelée
+$controller = $_GET['controller'] ?? 'driver';
+$action = $_GET['action'] ?? 'list';
+
+// On va aiguiller vers la bonne page
 // Accès à la page index.php?controller=driver&action=list
-$driverController = new Controller\DriverController();
-$driverController->list();
+
+// ucfirst($controller) devient Driver
+$controllerClassName = 'Controller\\'.ucfirst($controller).'Controller';
+$driverController = new $controllerClassName();
+
+// $action est remplacé par list() ou create()
+$driverController->$action();

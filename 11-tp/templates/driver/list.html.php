@@ -13,6 +13,14 @@ require '../templates/header.html.php'; ?>
                 </tr>
             <?php } ?>
         </table>
+
+        <form method="post" action="index.php?controller=driver&action=list">
+            <?= $form->input('firstname'); ?>
+            <?= $validation->getError('firstname'); ?>
+            <?= $form->input('name'); ?>
+            <?= $validation->getError('name'); ?>
+            <button class="btn">Ajouter ce conducteur</button>
+        </form>
     </div>
 
 <?php require '../templates/footer.html.php'; ?>
