@@ -5,11 +5,22 @@ require '../templates/header.html.php'; ?>
     <div class="container">
         <h1>Liste des conducteurs</h1>
         <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Prénom</th>
+                    <th>Nom</th>
+                    <th>Modification</th>
+                    <th>Suppression</th>
+                </tr>
+            </thead>
             <?php foreach ($drivers as $driver) { ?>
                 <tr>
                     <td><?= $driver->getId(); ?></td>
                     <td><?= $driver->getFirstname(); ?></td>
                     <td><?= $driver->getName(); ?></td>
+                    <td><a href=""><i class="fa fa-edit"></i></a></td>
+                    <td><a href=""><i class="fa fa-times"></i></a></td>
                 </tr>
             <?php } ?>
         </table>

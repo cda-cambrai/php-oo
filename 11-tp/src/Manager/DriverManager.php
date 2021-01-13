@@ -27,4 +27,15 @@ class DriverManager
 
         return $drivers;
     }
+
+    public function add(Driver $driver) {
+        $query = $this->db->prepare(
+            'INSERT INTO driver (name, firstname)
+             VALUES (:name, :firstname)'
+        );
+        $query->bindValue(':name', $driver->getName());
+        $query->bindValue(':firstname', $driver->getFirstname());
+
+        return $query->execute();
+    }
 }
