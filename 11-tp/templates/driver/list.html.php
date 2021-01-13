@@ -1,16 +1,18 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Liste des conducteurs</title>
+<?php
+// Attention, on part de public/index.php
+require '../templates/header.html.php'; ?>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
-</head>
-<body>
-    Menu
-    <h1>Liste des conducteurs</h1>
-</body>
-</html>
+    <div class="container">
+        <h1>Liste des conducteurs</h1>
+        <table class="table">
+            <?php foreach ($drivers as $driver) { ?>
+                <tr>
+                    <td><?= $driver->getId(); ?></td>
+                    <td><?= $driver->getFirstname(); ?></td>
+                    <td><?= $driver->getName(); ?></td>
+                </tr>
+            <?php } ?>
+        </table>
+    </div>
+
+<?php require '../templates/footer.html.php'; ?>
