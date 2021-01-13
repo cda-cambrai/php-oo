@@ -17,7 +17,11 @@ require '../templates/header.html.php'; ?>
             <?php foreach ($drivers as $driver) { ?>
                 <tr>
                     <td><?= $driver->getId(); ?></td>
-                    <td><?= $driver->getFirstname(); ?></td>
+                    <td>
+                        <a href="index.php?controller=driver&action=show&id=<?= $driver->getId(); ?>">
+                            <?= $driver->getFirstname(); ?>
+                        </a>
+                    </td>
                     <td><?= $driver->getName(); ?></td>
                     <td>
                         <a href="index.php?controller=driver&action=edit&id=<?= $driver->getId(); ?>">
