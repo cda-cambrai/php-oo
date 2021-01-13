@@ -19,8 +19,16 @@ require '../templates/header.html.php'; ?>
                     <td><?= $driver->getId(); ?></td>
                     <td><?= $driver->getFirstname(); ?></td>
                     <td><?= $driver->getName(); ?></td>
-                    <td><a href=""><i class="fa fa-edit"></i></a></td>
-                    <td><a href=""><i class="fa fa-times"></i></a></td>
+                    <td>
+                        <a href="index.php?controller=driver&action=edit&id=<?= $driver->getId(); ?>">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="index.php?controller=driver&action=delete&id=<?= $driver->getId(); ?>">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </td>
                 </tr>
             <?php } ?>
         </table>

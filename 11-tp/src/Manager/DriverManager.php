@@ -38,4 +38,11 @@ class DriverManager
 
         return $query->execute();
     }
+
+    public function delete($id) {
+        $query = $this->db->prepare('DELETE FROM driver WHERE id = :id');
+        $query->bindValue(':id', $id);
+
+        return $query->execute();
+    }
 }

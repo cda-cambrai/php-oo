@@ -16,7 +16,7 @@ class DriverController
         // On crée le formulaire pour pouvoir l'afficher sur cette page
         $form = new \Form($_POST);
         $validation = new \Validation($form);
-        $validation->name('firstname')->min(8)->required();
+        $validation->name('firstname')->min(3)->required();
         $validation->name('name')->required();
 
         // Ajouter le chauffeur en BDD si le formulaire est
@@ -35,7 +35,15 @@ class DriverController
         include '../templates/driver/list.html.php';
     }
 
-    public function create() {
-        echo 'TOTO';
+    public function edit() {
+        echo 'EDIT';
+    }
+
+    public function delete() {
+        $manager = new DriverManager();
+        // On supprime le chauffeur
+        $manager->delete($_GET['id']);
+        // On redirige sur la liste
+        header('Location: index.php?controller=driver&action=list');
     }
 }
