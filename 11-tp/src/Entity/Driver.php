@@ -9,7 +9,7 @@ class Driver
     private $firstname;
 
     // Alt + Entrée sur un argument du constructeur pour générer le code
-    public function __construct($name, $firstname)
+    public function __construct($name = null, $firstname = null)
     {
         $this->name = $name;
         $this->firstname = $firstname;

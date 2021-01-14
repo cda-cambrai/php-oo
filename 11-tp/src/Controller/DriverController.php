@@ -38,7 +38,7 @@ class DriverController
     public function edit() {
         // On doit récupérer le chauffeur qui est modifié dans la bdd
         $manager = new DriverManager();
-        $driver = $manager->getDriverById($_GET['id']);
+        $driver = $manager->getEntityById($_GET['id']);
         // On crée le formulaire pour pouvoir l'afficher sur cette page
         $data = ['name' => $driver->getName(), 'firstname' => $driver->getFirstname()];
         $form = new \Form($data);
@@ -73,7 +73,7 @@ class DriverController
 
     public function show() {
         $manager = new DriverManager();
-        $driver = $manager->getDriverById($_GET['id']);
+        $driver = $manager->getEntityById($_GET['id']);
 
         include '../templates/driver/show.html.php';
     }
